@@ -1,0 +1,4 @@
+com.google.android.play.core.common.IntentSenderForResultStarter
+com.google.android.play.core.common.LocalTestingException
+com.google.android.play.core.common.PlayCoreDialogWrapperActivity
+com.google.android.play.core.listener.StateUpdatedListener

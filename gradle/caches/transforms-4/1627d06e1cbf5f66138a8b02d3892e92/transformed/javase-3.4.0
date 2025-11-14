@@ -1,0 +1,12 @@
+com.google.zxing.client.j2se.BufferedImageLuminanceSource
+com.google.zxing.client.j2se.CommandLineEncoder
+com.google.zxing.client.j2se.CommandLineRunner
+com.google.zxing.client.j2se.DecodeWorker
+com.google.zxing.client.j2se.DecoderConfig
+com.google.zxing.client.j2se.EncoderConfig
+com.google.zxing.client.j2se.GUIRunner
+com.google.zxing.client.j2se.HtmlAssetTranslator
+com.google.zxing.client.j2se.ImageReader
+com.google.zxing.client.j2se.MatrixToImageConfig
+com.google.zxing.client.j2se.MatrixToImageWriter
+com.google.zxing.client.j2se.StringsResourceTranslator

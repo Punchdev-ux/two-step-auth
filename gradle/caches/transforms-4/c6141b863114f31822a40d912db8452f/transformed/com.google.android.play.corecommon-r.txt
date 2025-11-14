@@ -1,0 +1,2 @@
+com.google.android.play.corecommon
+style Theme_PlayCore_Transparent
