@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">two-step-auth</string>
+    <string name="login">Login</string>
+    <string name="email">Email</string>
+    <string name="password">password\n</string>
+    <string name="register">register</string>
+    <string name="click_to_login">Already have an account? Click here to login</string>
+    <string name="click_to_register">Don\'t have any account? Sign Up</string>
+    <string name="logout">logout</string>
+    <string name="welcome_back">Welcome Back!</string>
+    <string name="user_example_com">user@example.com</string>
+    <string name="_8">8</string>
+    <string name="mini_calculator">Mini Calculator</string>
+    <string name="confirm_and_activate_2fa">Confirm and Activate 2FA</string>
+</resources>
