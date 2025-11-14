@@ -12,4 +12,7 @@
     <string name="_8">8</string>
     <string name="mini_calculator">Mini Calculator</string>
     <string name="confirm_and_activate_2fa">Confirm and Activate 2FA</string>
+    <string name="send_verification_otp">send_verification_otp</string>
+    <string name="email_address">email_address</string>
+    <string name="account_security">account_security</string>
 </resources>

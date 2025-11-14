@@ -2,4 +2,6 @@
 <resources>
     <item name="otpField" type="id">otpField</item>
     <item name="verifyBtn" type="id">verifyBtn</item>
+    <item name="emailField" type="id">emailField</item>
+    <item name="sendOtpBtn" type="id">sendOtpBtn</item>
 </resources>
