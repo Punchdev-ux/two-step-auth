@@ -39,17 +39,31 @@ dependencies {
     implementation(libs.material)
     implementation(libs.activity)
     implementation(libs.constraintlayout)
-    implementation(libs.firebase.firestore)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
 
+    // Add these three lines for JavaMail API
+    implementation("com.sun.mail:android-mail:1.6.7")
+    implementation("com.sun.mail:android-activation:1.6.7")
+    implementation("javax.activation:activation:1.1.1")
+
     // Import the BoM for the Firebase platform
     implementation(platform(libs.firebase.bom))
 
+    // --- START OF FIX ---
+
     // Firebase Dependencies (no versions needed due to BoM)
     implementation(libs.firebase.auth)
-    implementation("com.google.firebase:firebase-firestore-ktx") // Added Firestore
+
+    // CORRECTED: This is the proper way to include Firestore for Java projects.
+    // It was already declared above as libs.firebase.firestore, so I am ensuring it's the only one.
+    implementation(libs.firebase.firestore)
+
+    // REMOVED: This Kotlin-specific library was causing the error.
+    // implementation("com.google.firebase:firebase-firestore-ktx")
+
+    // --- END OF FIX ---
 
     // TOTP and QR Code Dependencies using the version catalog
     implementation(libs.totp)

@@ -6,4 +6,58 @@
     </style>
 
     <style name="Theme.Twostepauth" parent="Base.Theme.Twostepauth" />
+    <!-- styles.xml -->
+    <style name="Calculator.Button">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">70dp
+        </item> <!-- Increased height for better touch targets -->
+        <item name="android:layout_weight">1</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="android:layout_marginEnd">8dp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Calculator.Button.Number" parent="Calculator.Button">
+        <item name="android:backgroundTint">#ECEFF1</item>
+        <item name="android:textColor">#37474F</item>
+    </style>
+
+    <style name="Calculator.Button.Operation" parent="Calculator.Button">
+        <item name="android:backgroundTint">#CFD8DC</item>
+        <item name="android:textColor">#37474F</item>
+    </style>
+
+    <style name="Calculator.Button.Operation.Red" parent="Calculator.Button.Operation">
+        <item name="android:backgroundTint">#FFCDD2</item>
+        <item name="android:textColor">#D32F2F</item>
+    </style>
+
+    <style name="Calculator">Calculator</style>
+
+    <!-- Your app's base theme might be here already. Leave it alone. -->
+    <style name="Base.Theme.Two_step_auth" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+    </style>
+
+    <style name="Theme.Two_step_auth" parent="Base.Theme.Two_step_auth" />
+
+
+
+    <!-- ================================================================ -->
+    <!-- == ADDED CALCULATOR STYLES (Ensure they are inside <resources>) == -->
+    <!-- ================================================================ -->
+    <!-- <style name="Calculator.Button">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">70dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:textSize">24sp</item>
+        <item name="app:cornerRadius">16dp</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="android:layout_marginEnd">8dp</item>
+        <item name="android:textStyle">bold</item>
+    </style> -->
 </resources>

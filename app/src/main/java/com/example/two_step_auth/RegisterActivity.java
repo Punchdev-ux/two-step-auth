@@ -24,6 +24,9 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+// ADDED: Import the Random class to generate an OTP
+import java.util.Random;
+
 public class RegisterActivity extends AppCompatActivity {
 
     TextInputEditText editTextEmail, editTextPassword;
@@ -38,7 +41,8 @@ public class RegisterActivity extends AppCompatActivity {
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if(currentUser != null){
-            Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+            // MODIFIED: Changed this to MainActivity to avoid a loop if already logged in
+            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
             startActivity(intent);
             finish();
         }
@@ -74,11 +78,14 @@ public class RegisterActivity extends AppCompatActivity {
 
                 if (TextUtils.isEmpty(email)) {
                     Toast.makeText( RegisterActivity.this,  "Enter email", Toast.LENGTH_SHORT).show();
+                    progressBar.setVisibility(View.GONE); // ADDED: Hide progress bar on error
                     return;
                 }
 
-                if (TextUtils.isEmpty(email)) {
+                // MODIFIED: Corrected the check to be for the password field
+                if (TextUtils.isEmpty(password)) {
                     Toast.makeText( RegisterActivity.this,  "Enter password", Toast.LENGTH_SHORT).show();
+                    progressBar.setVisibility(View.GONE); // ADDED: Hide progress bar on error
                     return;
                 }
 
@@ -88,16 +95,42 @@ public class RegisterActivity extends AppCompatActivity {
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 progressBar.setVisibility(View.GONE);
                                 if (task.isSuccessful()) {
-                                    // If sign in Succeds, display a message to the user.
-                                    Toast.makeText(RegisterActivity.this, "Account Created.",
-                                            Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                                    Toast.makeText(RegisterActivity.this, "Account Created. Sending verification OTP.",
+                                            Toast.LENGTH_LONG).show(); // MODIFIED: Longer toast message
+
+                                    // --- START OF ADDED CODE ---
+
+                                    // 1. Get the user's email from the input field
+                                    String userEmail = email;
+
+                                    // 2. Generate a 6-digit random OTP
+                                    String generatedOtp = String.valueOf(new Random().nextInt(900000) + 100000);
+                                    Log.d("OTP_GENERATED", "The OTP is: " + generatedOtp); // For debugging
+
+                                    // 3. Send the email in a background thread to avoid crashing the app
+                                    new Thread(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            // Make sure your EmailSender class is in the correct package
+                                            // For example: com.example.two_step_auth.EmailSender
+                                            EmailSender.sendEmail(userEmail, generatedOtp);
+                                        }
+                                    }).start();
+
+                                    // 4. Navigate to the OTP verification screen (Setup2FAActivity)
+                                    Intent intent = new Intent(getApplicationContext(), Setup2FAActivity.class);
+                                    // Pass the email and the generated OTP to the next activity
+                                    intent.putExtra("USER_EMAIL", userEmail);
+                                    intent.putExtra("GENERATED_OTP", generatedOtp);
                                     startActivity(intent);
                                     finish();
+
+                                    // --- END OF ADDED CODE ---
+
                                 } else {
                                     // If sign in fails, display a message to the user.
-                                    Toast.makeText(RegisterActivity.this, "Authentication failed.",
-                                            Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(RegisterActivity.this, "Authentication failed: " + task.getException().getMessage(),
+                                            Toast.LENGTH_LONG).show(); // MODIFIED: Show detailed error
                                 }
                             }
                         });
